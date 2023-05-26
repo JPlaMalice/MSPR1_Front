@@ -1,14 +1,12 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 
-const ProductDesc = ({ route }) => {
-  const { product } = route.params;
-
+const ProductDesc = () => {
   return (
     <View>
-      <Text>{product.name}</Text>
-      <Text>{product.description}</Text>
-      <Text>{product.price}</Text>
+      <Text>test</Text>
+      <Text>test</Text>
+      <Text></Text>
     </View>
   );
 };

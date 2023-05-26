@@ -1,17 +1,21 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
+import { TouchableOpacity } from "react-native";
+import ProductDesc from "./ProductDesc";
 
-const Product = ({ product, navigate }) => {
-  const { name, image, price } = product;
+export default class Product extends React.Component {
+  render() {
+    const { name, image, label, description } = this.props.product;
 
-  return (
-    <View style={styles.container}>
-      <Image source={{ uri: image }} style={styles.image} />
-      <Text style={styles.name}>{name}</Text>
-      <Text style={styles.price}>{price}</Text>
-    </View>
-  );
-};
+    return (
+      <View style={styles.container}>
+        <Image source={{ uri: image }} style={styles.image} />
+        <Text style={styles.name}>{label}</Text>
+        <Text style={styles.price}>{description}</Text>
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -46,5 +50,3 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
 });
-
-export default Product;
