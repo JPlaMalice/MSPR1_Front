@@ -5,6 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Button } from "react-native";
+import ImageComp from "./imagecomp";
 const HomePage = ({ navigation }) => {
   const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,7 @@ const HomePage = ({ navigation }) => {
       />
       <TouchableOpacity onPress={onPress}>
         <Text>Bonchourrrr</Text>
+        <ImageComp />
       </TouchableOpacity>
     </>
   );

@@ -13,7 +13,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import ProductDesc from "./ProductDesc";
 
-const Products = (navigation) => {
+const Products = (props) => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -21,18 +21,21 @@ const Products = (navigation) => {
   }, []);
 
   const fetchData = async () => {
-    try {
-      const response = await axios.get(
-        "http://localhost:3000/api/index.php/products"
-      );
-      setProducts(response.data);
-    } catch (error) {
-      console.error(error);
-    }
+    axios
+      .get("http://35.180.116.200/api/index.php/products?DOLAPIKEY=kawa")
+      .then((response) => {
+        setProducts(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        // Gérer les erreurs de la requête
+        console.error(error);
+      });
   };
 
   const onPress = () => {
-    navigation.navigate("ProductDesc", products);
+    props.navigation.navigate("ProductDesc", products);
+    console.log();
   };
 
   return (

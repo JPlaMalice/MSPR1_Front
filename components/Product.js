@@ -2,20 +2,48 @@ import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native";
 import ProductDesc from "./ProductDesc";
+import { useEffect } from "react";
+import ProductImg from "./ProductImg";
+// import { Card, WhiteSpace, WingBlank } from "@ant-design/react-native";
 
-export default class Product extends React.Component {
-  render() {
-    const { name, image, label, description } = this.props.product;
+const Product = (props) => {
+  const { name, image, label, description } = props.product;
 
-    return (
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = () => {
+    // console.log(props.product.id);
+  };
+
+  return (
+    <>
       <View style={styles.container}>
-        <Image source={{ uri: image }} style={styles.image} />
+        <ProductImg objs={props.product.id} />
         <Text style={styles.name}>{label}</Text>
         <Text style={styles.price}>{description}</Text>
       </View>
-    );
-  }
-}
+
+      {/* <Card>
+        <Card.Header
+          title="This is title"
+          thumbStyle={{ width: 30, height: 30 }}
+          thumb="https://gw.alipayobjects.com/zos/rmsportal/MRhHctKOineMbKAZslML.jpg"
+          extra="this is extra"
+        />
+        <Card.Body>
+          <View style={{ height: 42 }}>
+            <Text style={{ marginLeft: 16 }}>Card Content</Text>
+          </View>
+        </Card.Body>
+        <Card.Footer content="footer content" extra="footer extra content" />
+      </Card> */}
+    </>
+  );
+};
+
+export default Product;
 
 const styles = StyleSheet.create({
   container: {
