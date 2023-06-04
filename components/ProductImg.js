@@ -1,0 +1,31 @@
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import ImageComponent from "./ImageComponent";
+
+function ProductImg({ objs }) {
+  const [dataResponse, setDataResponse] = useState();
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = () => {
+    const url =
+      "http://35.180.116.200/api/index.php/documents?modulepart=product&id=" +
+      objs +
+      "&DOLAPIKEY=kawa";
+    axios
+      .get(url)
+      .then((response) => {
+        // console.log("resp", response.data[0]);
+        setDataResponse(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  return dataResponse ? <ImageComponent props={dataResponse} /> : null;
+}
+
+export default ProductImg;
