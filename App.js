@@ -7,7 +7,8 @@ import ProductDesc from "./components/ProductDesc";
 import ProfileScreen from "./components/ProfileScreen";
 import HomePage from "./components/HomePage";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
+import { NativeBaseConfigProvider } from "native-base"; // Importez NativeBaseConfigProvider depuis native-base
+import ProductInCartList from "./components/ProductsInCartList";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
         <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
         <Stack.Screen name="Products" component={Products} />
         <Stack.Screen name="ProductDesc" component={ProductDesc} />
+        <Stack.Screen name="ProductsInCartList" component={ProductInCartList} />
       </Stack.Navigator>
     </NavigationContainer>
   );

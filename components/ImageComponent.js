@@ -12,13 +12,13 @@ const ImageComponent = (props) => {
       "%2F" +
       props.props[0].name +
       "&DOLAPIKEY=kawa";
-    console.log("urlbis", urlTwo);
+    // console.log("urlbis", urlTwo);
     axios
       .get(urlTwo)
       .then((response) => {
-        console.log("content:", response.data.content);
+        // console.log("content:", response.data.content);
         setImageSource(response.data.content);
-        console.log("lasoruce", imageSource);
+        // console.log("lasoruce", imageSource);
       })
       .catch((error) => {
         console.error(error);
@@ -34,7 +34,7 @@ const ImageComponent = (props) => {
       {imageSource && (
         <Image
           source={{ uri: `data:image/jpeg;base64,${imageSource}` }}
-          style={{ width: "100%", height: 200 }}
+          style={{ width: "100%", height: 300 }}
         />
       )}
     </View>
