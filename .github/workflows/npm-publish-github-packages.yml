@@ -50,4 +50,4 @@ jobs:
           registry-url: https://npm.pkg.github.com/
       - run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_CONFIG_TOKEN}}
+          NPM_CONFIG_TOKEN: ${{secrets.NPM_CONFIG_TOKEN}}
