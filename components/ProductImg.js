@@ -11,7 +11,7 @@ function ProductImg({ objs }) {
 
   const fetchData = () => {
     const url =
-      "http://35.180.116.200/api/index.php/documents?modulepart=product&id=" +
+      "http://15.237.14.230/api/index.php/documents?modulepart=product&id=" +
       objs +
       "&DOLAPIKEY=kawa";
     axios

@@ -47,13 +47,6 @@ const ProductDesc = (props, addToCart) => {
           >
             "ajouter au"
           </Button>
-          {/* <ButtonPerso
-            labelButton="Ajouter au Panier"
-            iconButton="shopping-cart"
-            onClick={onClick()}
-          />
-          <div></div>
-          <ButtonPerso labelButton="Realité Augmenté" iconButton="cube-solid" /> */}
         </View>
       </View>
       <ProductsCartButton />

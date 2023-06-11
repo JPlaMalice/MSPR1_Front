@@ -32,7 +32,7 @@ const Products = (props) => {
 
   const fetchData = async () => {
     axios
-      .get("http://35.180.116.200/api/index.php/products?DOLAPIKEY=kawa")
+      .get("http://15.237.14.230/api/index.php/products?DOLAPIKEY=kawa")
       .then((response) => {
         setProducts(response.data);
         // console.log(response.data);
@@ -57,7 +57,6 @@ const Products = (props) => {
   return (
     <View style={styles.container}>
       <Text>{cartCount}</Text>
-      <Button onClick={handleClick}>bonjour</Button>
       <FlatList
         data={products}
         renderItem={({ item }) => (

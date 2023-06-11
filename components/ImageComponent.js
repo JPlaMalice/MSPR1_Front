@@ -7,7 +7,7 @@ const ImageComponent = (props) => {
 
   const fetchData = () => {
     const urlTwo =
-      "https://35.180.116.200/api/index.php/documents/download?modulepart=product&original_file=" +
+      "http://15.237.14.230/api/index.php/documents/download?modulepart=product&original_file=" +
       props.props[0].level1name +
       "%2F" +
       props.props[0].name +
@@ -16,7 +16,7 @@ const ImageComponent = (props) => {
     axios
       .get(urlTwo)
       .then((response) => {
-        // console.log("content:", response.data.content);
+        console.log("content:", response.data.content);
         setImageSource(response.data.content);
         // console.log("lasoruce", imageSource);
       })

@@ -6,7 +6,7 @@ function ImageComp() {
 
   useEffect(() => {
     const responseUrl =
-      "https://35.180.116.200/api/index.php/documents/download?modulepart=product&original_file=P0001%2FP0001-Cafe-Bio.jpg&DOLAPIKEY=kawa";
+      "http://15.237.14.230/api/index.php/documents/download?modulepart=product&original_file=P0001%2FP0001-Cafe-Bio.jpg&DOLAPIKEY=kawa";
 
     axios
       .get(responseUrl, { responseType: "text" })
