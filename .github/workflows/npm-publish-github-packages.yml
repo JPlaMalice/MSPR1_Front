@@ -34,7 +34,7 @@ jobs:
           node-version: 16
       - run: npm install
       - run: npm ci
-      - run: npm login
+      - run: npm adduser
       #- run: npm test
 
   publish-gpr:
