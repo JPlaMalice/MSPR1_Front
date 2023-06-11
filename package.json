@@ -34,7 +34,7 @@
     "@babel/core": "^7.20.0"
   },
   "publishConfig:" : {
-    "@JPlaMalice:registry": "https://npm.pkg.github.com"
+    "registry": "https://npm.pkg.github.com"
   },
   "private": true
 }
