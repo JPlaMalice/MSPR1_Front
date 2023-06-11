@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
-import jwt from "jsonwebtoken";
 
-import { Constants } from "expo-constants";
-import { Crypto } from "expo-crypto";
+import base64 from "react-native-base64";
+import HmacSHA256 from "react-native-crypto-js/hmac-sha256";
+import EncBase64 from "react-native-crypto-js/enc-base64";
 
 const HomePage = ({ navigation }) => {
   const [hasPermission, setHasPermission] = useState(null);
@@ -21,22 +21,36 @@ const HomePage = ({ navigation }) => {
   const handleBarCodeScanned = async ({ type, data }) => {
     setScanned(true);
     setScannedData(data);
-    console.log("data", data);
-    const decoded = jwt.verify(
-      data,
-      "mspr_dolib@arr_edgar_edgar_lynda_pierre_alexandre"
-    );
-    // try {
-    //   console.log("data", data);
-    //   const decoded = jwt.verify(
-    //     data,
-    //     "mspr_dolib@arr_edgar_edgar_lynda_pierre_alexandre"
-    //   );
-    //   console.log("oui"); // Token valide
-    // } catch (error) {
-    //   console.error("non"); // Token invalide
-    // }
+    const token = data;
+    const secret = "mspr_dolib@arr_edgar_edgar_lynda_pierrealexandre";
+    const [headerBase64, payloadBase64, signatureBase64Url] = token.split(".");
+
+    // Décoder les parties du token
+    const header = JSON.parse(base64.decode(headerBase64));
+    const payload = JSON.parse(base64.decode(payloadBase64));
+
+    // Créer le message à signer en concaténant l'en-tête et la charge utile
+    const message = `${headerBase64}.${payloadBase64}`; // Ajouter des guillemets inversés
+
+    // Calculer la signature
+    const calculatedSignature = HmacSHA256(message, secret);
+
+    // Convertir la signature calculée en format Base64Url
+    const calculatedSignatureBase64Url = EncBase64.stringify(
+      calculatedSignature
+    )
+      .replace("+", "-")
+      .replace("/", "_")
+      .replace(/=+$/, "");
+
+    // Comparer la signature calculée avec la signature extraite du token
+    if (calculatedSignatureBase64Url === signatureBase64Url) {
+      console.log("La signature du token est valide.");
+    } else {
+      console.log("La signature du token est invalide.");
+    }
   };
+
   const handleScanAgain = () => {
     setScanned(false);
     setScannedData("");

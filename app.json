@@ -17,9 +17,7 @@
     "ios": {
       "supportsTablet": true
     },
-    "extra": {
-      "jwtSecret": "mspr_dolib@arr_edgar_edgar_lynda_pierre_alexandre"
-    },    
+
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
