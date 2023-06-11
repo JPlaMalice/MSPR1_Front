@@ -1,5 +1,5 @@
 {
-  "name": "MSPR1_FRONT/mspr1_front",
+  "name": "@JPlaMalice/mspr1_front",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
@@ -35,6 +35,10 @@
   },
   "publishConfig:" : {
     "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JPlaMalice/MSPR1_Front"
   },
   "private": false
 }
