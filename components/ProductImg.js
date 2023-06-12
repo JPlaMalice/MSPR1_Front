@@ -17,7 +17,6 @@ function ProductImg({ objs }) {
     axios
       .get(url)
       .then((response) => {
-        // console.log("resp", response.data[0]);
         setDataResponse(response.data);
       })
       .catch((error) => {

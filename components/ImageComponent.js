@@ -16,7 +16,6 @@ const ImageComponent = (props) => {
     axios
       .get(urlTwo)
       .then((response) => {
-        console.log("content:", response.data.content);
         setImageSource(response.data.content);
         // console.log("lasoruce", imageSource);
       })

@@ -23,6 +23,7 @@ const Products = (props) => {
 
   useEffect(() => {
     fetchData();
+    console.log(props);
   }, []);
 
   const addTo = (product) => {
@@ -35,7 +36,6 @@ const Products = (props) => {
       .get("http://15.237.14.230/api/index.php/products?DOLAPIKEY=kawa")
       .then((response) => {
         setProducts(response.data);
-        // console.log(response.data);
       })
       .catch((error) => {
         // Gérer les erreurs de la requête

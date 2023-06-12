@@ -11,7 +11,6 @@ function ImageComp() {
     axios
       .get(responseUrl, { responseType: "text" })
       .then((response) => {
-        console.log(response.data);
 
       })
       .catch((error) => {

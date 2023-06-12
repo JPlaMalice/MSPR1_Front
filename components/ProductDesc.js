@@ -13,12 +13,9 @@ const ProductDesc = (props, addToCart) => {
     props.route.params.productId;
 
   const addTo = props.route.params.addTo;
-  useEffect(() => {
-    console.log("lol", addTo);
-  }, []);
+  useEffect(() => {}, []);
 
   const onClick = () => {
-    console.log(props.route.params.productId.id);
     addTo(props.route.params.productId.id);
   };
 
