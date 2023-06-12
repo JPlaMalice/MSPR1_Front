@@ -47,7 +47,7 @@ const HomePage = ({ navigation }) => {
     return (
       <>
         <Button
-          title="Go to Jane's profile"
+          title="Admin Skip button"
           onPress={() => navigation.navigate("Products")}
         />
         <Text>Pas d'accès à la caméra</Text>
