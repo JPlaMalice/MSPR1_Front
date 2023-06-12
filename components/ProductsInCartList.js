@@ -56,24 +56,21 @@ const ProductInCartList = (props) => {
         fk_product: element.id,
         qty: element.qty,
         subprice: element.price,
-        tva_tx: 20.0,
+        tva_tx: element.tva_tx,
       })),
     };
 
     console.log("data", orderData);
-
     try {
       const response = await axios.post(
         "http://15.237.14.230/api/index.php/orders?DOLAPIKEY=kawa",
         orderData
       );
 
-      const orderId = response.data.id; // Récupérer l'ID de la commande créée
-      console.log("Commande validée ! ID :", orderId);
-
+      console.log("Commande validée ! ID :", response);
       // Effectuer la validation finale de la commande
-      const validateResponse = await axios.put(
-        `http://15.237.14.230/api/index.php/orders/${orderId}/validate?DOLAPIKEY=kawa`
+      const validateResponse = await axios.post(
+        `http://15.237.14.230/api/index.php/orders/${response.data}/validate?DOLAPIKEY=kawa`
       );
       setIsModalVisible(true);
 

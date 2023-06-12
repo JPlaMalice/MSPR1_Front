@@ -43,7 +43,8 @@
     "react-native-web": "~0.18.10"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.20.0",
+    "cypress": "^12.14.0"
   },
   "private": true
 }
