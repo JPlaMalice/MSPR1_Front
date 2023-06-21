@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { AuthContext } from "./AuthContext";
 import {
   View,
   Text,
@@ -14,10 +15,10 @@ import { NavigationContainer } from "@react-navigation/native";
 import ProductDesc from "./ProductDesc";
 import Icon from "react-native-vector-icons/FontAwesome";
 import ProductsCart from "./ProductsCartButton";
-import { ButtonGroup } from "react-native-elements";
-import { Button } from "react-native-paper";
 
 const Products = (props) => {
+  const { user } = useContext(AuthContext);
+
   const [products, setProducts] = useState([]);
   const [cartCount, setCartCount] = useState([]);
 
@@ -26,16 +27,17 @@ const Products = (props) => {
   }, []);
 
   const addTo = (product) => {
-    console.log("porrrrrrod", product);
     setCartCount((prevCartCount) => [...prevCartCount, product]);
   };
 
   const fetchData = async () => {
+    const url =
+      "http://15.237.14.230/api/index.php/categories/2/objects?type=product&DOLAPIKEY=" +
+      user;
     axios
-      .get("http://35.180.116.200/api/index.php/products?DOLAPIKEY=kawa")
+      .get(url)
       .then((response) => {
         setProducts(response.data);
-        // console.log(response.data);
       })
       .catch((error) => {
         // Gérer les erreurs de la requête
@@ -43,31 +45,25 @@ const Products = (props) => {
       });
   };
 
-  function handleClick() {
-    console.log(cartCount);
-  }
-
   const onPress = (productId) => {
-    props.navigation.navigate("ProductDesc", { productId, addTo });
+    props.navigation.navigate("Description du produit", { productId, addTo });
   };
 
   const navigateTo = () => {
-    props.navigation.navigate("ProductsInCartList", cartCount);
+    props.navigation.navigate("Panier", cartCount);
   };
   return (
     <View style={styles.container}>
-      <Text>{cartCount}</Text>
-      <Button onClick={handleClick}>bonjour</Button>
       <FlatList
         data={products}
         renderItem={({ item }) => (
           <TouchableWithoutFeedback onPress={() => onPress(item)}>
             <View>
-              <Product navigation={navigation} product={item} />
+              <Product product={item} />
             </View>
           </TouchableWithoutFeedback>
         )}
-        keyExtractor={(item) => item.id.toString()} // Convertir l'ID en chaîne de caractères pour le keyExtractor
+        keyExtractor={(item) => item.id.toString()}
       />
       <ProductsCart navigateToList={navigateTo} />
     </View>

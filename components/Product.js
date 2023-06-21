@@ -9,16 +9,11 @@ import { Card } from "react-native-paper";
 const Product = (props) => {
   const { name, image, label, description, price } = props.product;
 
-  // const priceShorted = () => {
-  //   return price.toFixed(2);
-  // };
   useEffect(() => {
     fetchData();
   }, []);
 
-  const fetchData = () => {
-    // console.log(props.product.id);
-  };
+  const fetchData = () => {};
 
   return (
     <>

@@ -1,24 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { View, Image, StyleSheet } from "react-native";
+import { AuthContext } from "./AuthContext";
 import axios from "axios";
 
 const ImageComponent = (props) => {
+  const { user } = useContext(AuthContext);
   const [imageSource, setImageSource] = useState(null);
 
   const fetchData = () => {
     const urlTwo =
-      "https://35.180.116.200/api/index.php/documents/download?modulepart=product&original_file=" +
+      "http://15.237.14.230/api/index.php/documents/download?modulepart=product&original_file=" +
       props.props[0].level1name +
       "%2F" +
       props.props[0].name +
-      "&DOLAPIKEY=kawa";
-    // console.log("urlbis", urlTwo);
+      "&DOLAPIKEY=" +
+      user;
     axios
       .get(urlTwo)
       .then((response) => {
-        // console.log("content:", response.data.content);
         setImageSource(response.data.content);
-        // console.log("lasoruce", imageSource);
       })
       .catch((error) => {
         console.error(error);
