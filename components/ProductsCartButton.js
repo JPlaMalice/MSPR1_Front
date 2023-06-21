@@ -11,7 +11,6 @@ import Icon from "react-native-vector-icons/FontAwesome";
 
 export default function ProductsCartButton(navigateToList) {
   const handleCartPress = () => {
-    console.log(navigateToList.navigateToList);
     navigateToList.navigateToList();
   };
 

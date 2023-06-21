@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, Linking } from "react-native";
 import { useEffect } from "react";
 import ProductImg from "./ProductImg";
 import { Card } from "react-native-paper";
@@ -9,7 +9,7 @@ import ProductsCartButton from "./ProductsCartButton";
 import { Button } from "react-native-paper";
 import { FontAwesome } from "@expo/vector-icons";
 const ProductDesc = (props, addToCart) => {
-  const { id, name, image, label, description, price } =
+  const { id, name, image, label, description, price, url } =
     props.route.params.productId;
 
   const addTo = props.route.params.addTo;
@@ -42,11 +42,31 @@ const ProductDesc = (props, addToCart) => {
             buttonColor="#957437"
             onPress={onClick} // Appel de la fonction onPress passée en prop
           >
-            "ajouter au"
+            ajouter au
           </Button>
         </View>
+        <Button
+          icon={({ size }) => (
+            <FontAwesome name="cube" size={size} color={"#ffffff"} />
+          )}
+          mode="contained"
+          contentStyle={{ flexDirection: "row-reverse" }}
+          style={[
+            styles.viewEnvironmentButton,
+            { backgroundColor: url ? "#957437" : "#888888" }, // Modifier la couleur du fond en fonction de l'état de l'URL
+          ]}
+          labelStyle={{ fontWeight: "bold", fontSize: 16 }}
+          buttonColor="#957437"
+          onPress={() => {
+            if (url) {
+              Linking.openURL(url);
+            }
+          }} // Appel de la fonction onPress passée en prop
+          disabled={!url} // Rendre le bouton inutilisable si l'URL est vide ou nulle
+        >
+          Visualiser dans l'environnement
+        </Button>
       </View>
-      <ProductsCartButton />
     </>
   );
 };
@@ -77,6 +97,15 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 200,
     resizeMode: "cover",
+  },
+
+  viewEnvironmentButton: {
+    marginTop: 10,
+    borderRadius: 5,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    backgroundColor: "#957437",
+    alignSelf: "center",
   },
   name: {
     fontSize: 16,

@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { View, Image, StyleSheet } from "react-native";
+import { AuthContext } from "./AuthContext";
 import axios from "axios";
 
 const ImageComponent = (props) => {
+  const { user } = useContext(AuthContext);
   const [imageSource, setImageSource] = useState(null);
 
   const fetchData = () => {
@@ -11,13 +13,12 @@ const ImageComponent = (props) => {
       props.props[0].level1name +
       "%2F" +
       props.props[0].name +
-      "&DOLAPIKEY=kawa";
-    // console.log("urlbis", urlTwo);
+      "&DOLAPIKEY=" +
+      user;
     axios
       .get(urlTwo)
       .then((response) => {
         setImageSource(response.data.content);
-        // console.log("lasoruce", imageSource);
       })
       .catch((error) => {
         console.error(error);

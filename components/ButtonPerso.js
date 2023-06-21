@@ -15,7 +15,6 @@ const ButtonPerso = ({ labelButton, onPress, iconButton, onClick }) => {
       style={{ borderRadius: 10, marginVertical: 10, width: 200 }}
       labelStyle={{ fontWeight: "bold", fontSize: 16 }}
       buttonColor="#957437"
-      onPress={console.log(onClick)} // Appel de la fonction onPress passée en prop
     >
       {labelButton}
     </Button>

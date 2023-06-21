@@ -1,16 +1,17 @@
 import React from "react";
 import { View, StyleSheet, Text, Button, Modal } from "react-native";
 import { List, Divider } from "react-native-paper";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import axios from "axios";
+import { AuthContext } from "./AuthContext";
 
 const ProductInCartList = (props) => {
   const products = props.route.params;
+  const { user } = useContext(AuthContext);
   const [listOfElements, setListOfElements] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [isModalVisible, setIsModalVisible] = useState(false);
   useEffect(() => {
-    console.log(props.route.params);
     const fetchData = async () => {
       const updatedList = [];
       let priceTotal = 0;
@@ -19,13 +20,13 @@ const ProductInCartList = (props) => {
         const id = products[i];
         try {
           const response = await axios.get(
-            `http://15.237.14.230/api/index.php/products/${id}?DOLAPIKEY=kawa`
+            `http://15.237.14.230/api/index.php/products/${id}?DOLAPIKEY=${user}`
           );
           const data = response.data;
           updatedList.push(data);
           const num = parseFloat(data.price);
           priceTotal = priceTotal + num;
-          console.log("updatedList", priceTotal);
+          "updatedList", priceTotal;
         } catch (error) {
           console.error(error);
           // Gérer les erreurs de la requête pour un ID spécifique
@@ -60,21 +61,17 @@ const ProductInCartList = (props) => {
       })),
     };
 
-    console.log("data", orderData);
     try {
       const response = await axios.post(
-        "http://15.237.14.230/api/index.php/orders?DOLAPIKEY=kawa",
+        `http://15.237.14.230/api/index.php/orders?DOLAPIKEY=${user}`,
         orderData
       );
 
-      console.log("Commande validée ! ID :", response);
       // Effectuer la validation finale de la commande
       const validateResponse = await axios.post(
-        `http://15.237.14.230/api/index.php/orders/${response.data}/validate?DOLAPIKEY=kawa`
+        `http://15.237.14.230/api/index.php/orders/${response.data}/validate?DOLAPIKEY=${user}`
       );
       setIsModalVisible(true);
-
-      console.log("Validation de la commande :", validateResponse.data);
     } catch (error) {
       console.error("Erreur lors de la validation de la commande", error);
     }
